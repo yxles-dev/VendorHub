@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Market Registration</title>
+    <link rel="stylesheet" href="pvrs.css">
+</head>
+<body>
+    <div class="top-header">
+        <div class="logo-placeholder"></div>
+        <h2>Barangay Public Market</h2>
+    </div>
+    <div id="landing-page" class="page-container" style="text-align: center; padding-top: 50px;">
+        <h1 class="page-title">REGISTRATION</h1>
+        <div class="form-container">
+            <p style="font-family: Georgia, serif; font-size: 18px;">Welcome! Register your business today while ensuring the health and safety of our community.</p>
+            <button id="start-btn" class="animated-btn" style="margin-top: 30px;">Start Registration</button>
+        </div>
+    </div>
+
+    <div id="registration-system" class="page-container" style="display: none;">
+        
+        <h1 class="page-title">REGISTRATION</h1>
+
+        <div class="form-container">
+            <form id="market-form">
+                
+                <div class="form-step step-active" id="step-1">
+                    <h2 class="section-title">PERSONAL INFORMATION</h2>
+                    
+                    <div class="form-row">
+                        <div class="input-group" style="flex: 2;">
+                            <label>Fullname</label>
+                            <input type="text" placeholder="Ex: Juan Dela Cruz" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Sex</label>
+                            <select required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Date of Birth</label>
+                            <input type="date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Contact Number</label>
+                            <input type="tel" placeholder="091-234-5678" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Emergency Contact</label>
+                            <input type="text" placeholder="Name & Contact Number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Address</label>
+                            <input type="text" placeholder="Enter your Address" required>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title" style="margin-top: 40px;">BUSINESS DETAILS</h2>
+
+                    <div class="form-row">
+                        <div class="input-group" style="flex: 2;">
+                            <label>Business Name</label>
+                            <input type="text" placeholder="Enter business name" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Category</label>
+                            <select required>
+                                <option value="">Select...</option>
+                                <option value="Isda">Isda (Seafood)</option>
+                                <option value="Karne">Karne (Meat)</option>
+                                <option value="Prutas">Prutas (Fruits)</option>
+                                <option value="Gulay">Gulay (Vegetables)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn-group right-align">
+                        <button type="button" class="next-btn animated-btn">Next</button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step-2">
+                    <h2 class="section-title">HEALTH DECLARATION</h2>
+                    
+                    <div class="question">
+                        <p>Does your stall have a hand-washing station to sanitize your materials?</p>
+                        <label><input type="radio" name="q1" value="Yes"> YES</label>
+                        <label><input type="radio" name="q1" value="No"> NO</label>
+                    </div>
+                    <div class="question">
+                        <p>Will you provide a color-coded trash bin to separate biodegradable and non-biodegradable waste?</p>
+                        <label><input type="radio" name="q2" value="Yes"> YES</label>
+                        <label><input type="radio" name="q2" value="No"> NO</label>
+                    </div>
+                    <div class="question">
+                        <p>Do you agree to wear an apron, hairnet and gloves while handling products of yours?</p>
+                        <label><input type="radio" name="q3" value="Yes"> YES</label>
+                        <label><input type="radio" name="q3" value="No"> NO</label>
+                    </div>
+                    <div class="question">
+                        <p>Do you agree to clear and clean your area/stall before and after the operating hours in the market?</p>
+                        <label><input type="radio" name="q4" value="Yes"> YES</label>
+                        <label><input type="radio" name="q4" value="No"> NO</label>
+                    </div>
+                    <div class="question">
+                        <p>Do you agree to refrain from smoking within your designated area?</p>
+                        <label><input type="radio" name="q5" value="Yes"> YES</label>
+                        <label><input type="radio" name="q5" value="No"> NO</label>
+                    </div>
+
+                    <h3 style="font-family: Georgia, serif; margin-top: 30px;">Agreements</h3>
+                    <label class="checkbox-label"><input type="checkbox"> I certify that both myself and my employees have valid health certificates.</label>
+                    <label class="checkbox-label"><input type="checkbox"> I will keep my stall area clean through proper cleaning methods which meet local health regulations.</label>
+                    <label class="checkbox-label"><input type="checkbox"> I and my employees will dispose all business waste including organic waste from fish and produce according to specific disposal locations.</label>
+                    <label class="checkbox-label"><input type="checkbox"> I clearly understand that noncompliance could mean termination of registration.</label>
+                    <label class="checkbox-label"><input type="checkbox"> I declare that all my products are fresh, safe for consumption, and legal sourced from approved suppliers.</label>
+                    <label class="checkbox-label"><input type="checkbox"> I certify that I am fit to work, do not have any symptoms and free from any communicable diseases.</label>
+                    <div class="btn-group split-align">
+                        <button type="button" class="prev-btn animated-btn">Back</button>
+                        <button type="button" class="next-btn animated-btn">Next</button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step-3">
+                    <h2 class="section-title">BUSINESS REGISTRATION</h2>
+                    <p style="font-family: Georgia, serif;">Please upload clear pictures or PDFs of the following documents:</p>
+                    
+                    <div class="form-row">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Barangay Clearance</label>
+                            <input type="file" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>DTI Business Name Registration</label>
+                            <input type="file" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Valid Government ID</label>
+                            <input type="file" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Individual Health Certificate</label>
+                            <input type="file" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Sanitary Permit</label>
+                            <input type="file" accept="image/*" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Proof of Stall (Photo)</label>
+                            <input type="file" accept="image/*" required>
+                        </div>
+                    </div>
+
+                    <div class="btn-group split-align">
+                        <button type="button" class="prev-btn animated-btn">Back</button>
+                        <button type="button" class="next-btn submit-btn animated-btn">Submit</button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step-4" style="text-align: center; padding: 40px 0;">
+                    <h2 class="section-title">REGISTRATION COMPLETE</h2>
+                    <p style="font-family: Georgia, serif; font-size: 18px;">Thank you for registering. The barangay office will review your requirements.</p>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="stepper-container">
+            <div class="stepper-pill">
+                
+                <div class="step">
+                    <div class="step-circle">
+                        <div class="wave-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                    </div>
+                    <span class="step-label">Personal Info</span>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="step">
+                    <div class="step-circle">
+                        <div class="wave-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                    </div>
+                    <span class="step-label">Health Dec.</span>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="step">
+                    <div class="step-circle">
+                        <div class="wave-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                    </div>
+                    <span class="step-label">Requirements</span>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="step">
+                    <div class="step-circle">
+                        <div class="wave-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                    </div>
+                    <span class="step-label">Complete</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="pvrs.js"></script>
+</body>
+</html>
