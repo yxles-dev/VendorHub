@@ -27,7 +27,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    border-radius: 0 0 15px 15px;
+    border-radius: 15px 15px 15px 15px;
     margin: 15px;
 }
 
@@ -160,6 +160,23 @@ button {
 }
 .animated-btn:active {
     transform: scale(0.95);
+}
+
+/* Disabled Button State */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    transform: none;
+    background-color: var(--btn-bg);
+}
+
+/* Invalid phone input */
+input.invalid-phone {
+    border: 2px solid #e74c3c;
+    box-shadow: 0 0 6px rgba(231,76,60,0.12);
 }
 
 /* STEPPER PILL*/
