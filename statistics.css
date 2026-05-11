@@ -232,6 +232,10 @@ body {
     .stat-cards-container {
         max-width: 100%;
         margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
     }
 }
 
@@ -250,6 +254,10 @@ body {
     .stat-cards-container {
         grid-template-columns: 1fr;
         max-width: 100%;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        padding: 0 20px;
+        box-sizing: border-box;
     }
 
     .stat-card {
@@ -277,6 +285,13 @@ body {
 
     .dashboard-title h1 {
         font-size: 20px;
+    }
+
+    .stat-cards-container {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        padding: 0 10px;
+        gap: 16px;
     }
 
     .stat-card {
