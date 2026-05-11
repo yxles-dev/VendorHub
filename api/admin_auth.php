@@ -28,8 +28,9 @@ function admin_basic_auth_password(): string {
 }
 
 function admin_send_auth_challenge(): void {
-    header('Location: ../index.html?auth=denied');
+    header('WWW-Authenticate: Basic realm="VendorHub Admin", charset="UTF-8"');
     http_response_code(401);
+    header('Location: ../index.html?auth=denied');
     exit;
 }
 
