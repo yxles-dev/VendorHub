@@ -4,21 +4,23 @@
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-light);
+    background: linear-gradient(180deg, #f8f2e8 0%, var(--bg-light) 100%);
     color: var(--text-color);
     overflow-x: hidden;
 }
 
 /* Header */
 .header {
-    background-color: #ccd5ae;
+    background: rgba(215, 222, 190, 0.88);
     padding: 20px 37px;
     display: flex;
     align-items: center;
     gap: 24px;
     margin: 18px;
-    border-radius: 15px;
+    border-radius: 18px;
     height: 77px;
+    border: 1px solid rgba(147, 160, 120, 0.22);
+    box-shadow: 0 16px 34px rgba(59, 48, 24, 0.08);
 }
 
 .company-logo {
@@ -50,7 +52,7 @@ body {
 }
 
 .dashboard-title h1 {
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: var(--font-display);
     font-size: 40px;
     font-weight: 400;
     color: #000;
@@ -69,10 +71,10 @@ body {
 }
 
 .stat-card {
-    background-color: #fefae0;
+    background: rgba(255, 250, 242, 0.96);
     border-radius: 24px;
     padding: 28px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 18px 36px rgba(59, 48, 24, 0.08);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -128,15 +130,15 @@ body {
 }
 
 .chart-card {
-    background-color: #fefae0;
+    background: rgba(255, 250, 242, 0.96);
     border-radius: 24px;
     padding: 32px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 18px 36px rgba(59, 48, 24, 0.08);
 }
 
 
 .chart-title {
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: var(--font-display);
     font-size: 28px;
     font-weight: 400;
     color: #000;
@@ -152,10 +154,10 @@ body {
 
 /* Compliance Card */
 .compliance-card {
-    background-color: #fefae0;
+    background: rgba(255, 250, 242, 0.96);
     border-radius: 24px;
     padding: 32px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 18px 36px rgba(59, 48, 24, 0.08);
     margin: 24px 0;
 }
 
@@ -166,10 +168,10 @@ body {
 
 /* Key Insights */
 .key-insights {
-    background-color: #fefae0;
+    background: rgba(255, 250, 242, 0.96);
     border-radius: 24px;
     padding: 32px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 18px 36px rgba(59, 48, 24, 0.08);
     margin: 24px 0;
 }
 
@@ -200,7 +202,7 @@ body {
 }
 
 .insight-value {
-    font-family: 'Staatliches', sans-serif;
+    font-family: var(--font-display);
     font-size: 32px;
     font-weight: 400;
     color: #000;

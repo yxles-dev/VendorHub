@@ -3,7 +3,7 @@
    ============================================ */
 
 body {
-    background-color: var(--bg-main);
+    background: linear-gradient(180deg, #f8f2e8 0%, var(--bg-main) 100%);
     padding-bottom: 120px;
 }
 
@@ -23,10 +23,11 @@ body {
 
 /* The Cream Form Box */
 .form-container {
-    background-color: var(--form-bg);
+    background-color: rgba(255, 250, 242, 0.96);
     padding: 40px;
-    border-radius: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border-radius: 28px;
+    border: 1px solid rgba(208, 194, 167, 0.6);
+    box-shadow: 0 18px 36px rgba(59, 48, 24, 0.08);
 }
 
 .section-title {
@@ -36,6 +37,7 @@ body {
     margin-top: 0;
     margin-bottom: 25px;
     text-transform: uppercase;
+    color: var(--accent-olive);
 }
 
 /* Form Layout (Flexbox for Side-by-Side) */
@@ -93,7 +95,7 @@ button {
     background-color: var(--btn-bg);
     color: #000;
     font-size: 16px;
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
 }
@@ -102,7 +104,7 @@ button {
 
 .animated-btn:hover {
     transform: scale(1.05);
-    background-color: #bee3c8;
+    background-color: #c9e0cc;
 }
 .animated-btn:active {
     transform: scale(0.95);
@@ -171,10 +173,11 @@ input.invalid-phone {
 .stepper-pill {
     display: flex;
     align-items: center;
-    background-color: var(--stepper-bg);
+    background: rgba(242, 233, 224, 0.92);
     padding: 15px 30px;
     border-radius: 50px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+    border: 1px solid rgba(208, 194, 167, 0.55);
+    box-shadow: 0 14px 30px rgba(59, 48, 24, 0.08); 
     overflow-x: auto; 
     pointer-events: auto;
     max-width: 100%;

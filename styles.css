@@ -14,17 +14,24 @@
 
 /* CSS Variables */
 :root {
-    --bg-main: #f8f9fa;
+    --bg-main: #f5f1e6;
     --bg-light: #f3f5e2;
+    --surface: rgba(255, 250, 242, 0.95);
+    --surface-strong: #fff7ea;
+    --surface-border: #dccfb7;
+    --shadow-soft: 0 16px 36px rgba(59, 48, 24, 0.08);
     --top-header-bg: #d7debe;
     --form-bg: #fef9e6;
-    --btn-bg: #cfe6d6;
-    --stepper-bg: #f4ecec;
+    --btn-bg: #d6e8d0;
+    --stepper-bg: #f2e9e0;
     --circle-inactive: #b5b5b5;
     --circle-active: #8dc18b;
     --text-color: #000000;
     --accent-green: #a4b87e;
     --accent-green-hover: #94a36a;
+    --accent-olive: #2f5d50;
+    --accent-sand: #d08c3f;
+    --text-muted: rgba(0, 0, 0, 0.65);
     --font-heading: "Segoe UI", Arial, sans-serif;
     --font-serif: Georgia, 'Times New Roman', Times, serif;
     --font-display: "Staatliches", sans-serif;
@@ -36,32 +43,76 @@ body {
     margin: 0;
     color: var(--text-color);
     font-family: var(--font-heading);
+    line-height: 1.5;
+    background: radial-gradient(circle at top, #fff9ef 0%, var(--bg-main) 58%);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 /* Top Header Bar - Shared */
 .top-header {
-    background-color: var(--top-header-bg);
+    background: rgba(215, 222, 190, 0.9);
+    border: 1px solid rgba(147, 160, 120, 0.22);
+    box-shadow: var(--shadow-soft);
     padding: 15px 30px;
     display: flex;
     align-items: center;
     gap: 15px;
-    border-radius: 15px;
+    border-radius: 18px;
     margin: 15px;
 }
 
 .logo-placeholder {
     width: 40px;
     height: 40px;
-    background-color: white;
-    border-radius: 8px;
+    border-radius: 10px;
+    display: block;
+    object-fit: contain;
 }
 
 .top-header h2,
 .top-header-name {
     margin: 0;
+    font-family: "Staatliches";
     font-family: var(--font-serif);
     font-weight: normal;
     font-size: 22px;
+}
+
+/* Top Navigation Styling */
+.nav-spacer {
+    flex: 1;
+}
+
+.top-nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.nav-link {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    background-color: var(--accent-green);
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+    background-color: var(--accent-green-hover);
+    transform: translateY(-2px);
+}
+
+.nav-link.nav-active {
+    background-color: var(--accent-green);
 }
 
 /* Standard Input Styling */
@@ -73,14 +124,24 @@ select,
 input[type="file"] {
     width: 100%;
     padding: 12px 15px;
-    border: none;
-    border-radius: 8px;
-    background-color: #ffffff;
+    border: 1px solid #dfd3be;
+    border-radius: 12px;
+    background-color: #fffcf6;
     font-size: 14px;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-sans);
+    color: var(--text-color);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 input::placeholder {
     color: #b5b5b5;
+}
+
+a {
+    color: var(--accent-olive);
+}
+
+a:hover {
+    color: var(--accent-green-hover);
 }

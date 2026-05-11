@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="top-header">
-        <div class="logo-placeholder"></div>
+        <img src="assets/logo.svg" alt="VendorHub logo" class="logo-placeholder">
         <h2>VendorHub</h2>
     </div>
     
@@ -190,7 +190,7 @@
                             <input type="file" name="government_id" required>
                         </div>
                         <div class="input-group" style="flex: 1;">
-                            <label>Individual Health Certificate</label>
+                            <label>Health Certificate</label>
                             <input type="file" name="health_certificate" required>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                             <input type="file" name="sanitary_permit" accept="image/*" required>
                         </div>
                         <div class="input-group" style="flex: 1;">
-                            <label>Proof of Stall (Photo)</label>
+                            <label>COVID Vaccine Card</label>
                             <input type="file" name="proof_of_stall" accept="image/*" required>
                         </div>
                     </div>
@@ -215,8 +215,10 @@
                 <div class="form-step" id="step-4" style="text-align: center; padding: 40px 0;">
                     <h2 class="section-title">REGISTRATION COMPLETE</h2>
                     <p style="font-family: Georgia, serif; font-size: 18px;">Thank you for registering. The barangay office will review your requirements.</p>
-                    <button>Print Details</button>
-                    <button>Go back to Home Page</button>
+                    <div style="padding-top: 50px;">
+                        <button>Print Details</button>
+                        <button onclick="location.href='index.html';">Go back to Home Page</button>
+                    </div>
                 </div>
 
             </form>
