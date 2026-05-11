@@ -1,48 +1,10 @@
-/* Color Palette & Variables */
-:root {
-    --bg-main: #f8f9fa;        
-    --top-header-bg: #d7debe;  
-    --form-bg: #fef9e6;        
-    --btn-bg: #cfe6d6;         
-    --stepper-bg: #f4ecec;     
-    --circle-inactive: #b5b5b5;
-    --circle-active: #8dc18b;  
-    --text-color: #000000;
-    --font-heading: "Segoe UI", Arial, sans-serif; 
-    --font-serif: Georgia, 'Times New Roman', Times, serif; 
-}
+/* ============================================
+   FORM & STEPPER SPECIFIC STYLES
+   ============================================ */
 
 body {
-    font-family: var(--font-heading);
     background-color: var(--bg-main);
-    margin: 0;
-    padding: 0 0 50px 0;
-    color: var(--text-color);
-}
-
-/* Top Header Bar */
-.top-header {
-    background-color: var(--top-header-bg);
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border-radius: 15px 15px 15px 15px;
-    margin: 15px;
-}
-
-.logo-placeholder {
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 8px;
-}
-
-.top-header h2 {
-    margin: 0;
-    font-family: var(--font-serif);
-    font-weight: normal;
-    font-size: 22px;
+    padding-bottom: 120px;
 }
 
 /* Layout Containers */
@@ -92,22 +54,6 @@ body {
     font-family: var(--font-serif);
     font-size: 16px;
     margin-bottom: 8px;
-}
-
-/* Inputs & Selects */
-input[type="text"], input[type="date"], input[type="tel"], select, input[type="file"] {
-    width: 100%;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 8px;
-    background-color: #ffffff;
-    font-size: 14px;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-input::placeholder {
-    color: #b5b5b5;
 }
 
 /* Radios and Checkboxes */
@@ -179,11 +125,47 @@ input.invalid-phone {
     box-shadow: 0 0 6px rgba(231,76,60,0.12);
 }
 
+/* Age Warning Popup */
+.age-warning-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e74c3c;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    animation: slideUp 0.3s ease-out;
+    max-width: 90%;
+    text-align: center;
+}
+
+@keyframes slideUp {
+    from {
+        bottom: -60px;
+        opacity: 0;
+    }
+    to {
+        bottom: 20px;
+        opacity: 1;
+    }
+}
+
 /* STEPPER PILL*/
 .stepper-container {
+    position: sticky;
+    top: 12px;
+    width: min(900px, calc(100vw - 32px));
     display: flex;
     justify-content: center;
-    margin-top: 40px; 
+    margin: 0 auto 24px;
+    z-index: 1000;
+    pointer-events: none;
 }
 
 .stepper-pill {
@@ -194,6 +176,8 @@ input.invalid-phone {
     border-radius: 50px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
     overflow-x: auto; 
+    pointer-events: auto;
+    max-width: 100%;
 }
 .step {
     display: flex;
@@ -296,5 +280,24 @@ input.invalid-phone {
     .form-row {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .stepper-container {
+        top: 10px;
+        width: calc(100vw - 24px);
+    }
+
+    .stepper-pill {
+        padding: 12px 16px;
+        border-radius: 28px;
+    }
+
+    .step-label {
+        font-size: 12px;
+    }
+
+    .line {
+        width: 24px;
+        margin: 0 10px;
     }
 }

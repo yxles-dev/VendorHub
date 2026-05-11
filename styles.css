@@ -1,0 +1,86 @@
+/* ============================================
+   SHARED BASE STYLES
+   ============================================ */
+
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Jost:wght@400;500&family=Julius+Sans+One&display=swap');
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+    --bg-main: #f8f9fa;
+    --bg-light: #f3f5e2;
+    --top-header-bg: #d7debe;
+    --form-bg: #fef9e6;
+    --btn-bg: #cfe6d6;
+    --stepper-bg: #f4ecec;
+    --circle-inactive: #b5b5b5;
+    --circle-active: #8dc18b;
+    --text-color: #000000;
+    --accent-green: #a4b87e;
+    --accent-green-hover: #94a36a;
+    --font-heading: "Segoe UI", Arial, sans-serif;
+    --font-serif: Georgia, 'Times New Roman', Times, serif;
+    --font-display: "Staatliches", sans-serif;
+    --font-sans: "Jost", "Segoe UI", sans-serif;
+}
+
+/* Body Base */
+body {
+    margin: 0;
+    color: var(--text-color);
+    font-family: var(--font-heading);
+}
+
+/* Top Header Bar - Shared */
+.top-header {
+    background-color: var(--top-header-bg);
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 15px;
+    margin: 15px;
+}
+
+.logo-placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.top-header h2,
+.top-header-name {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: normal;
+    font-size: 22px;
+}
+
+/* Standard Input Styling */
+input[type="email"],
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+input::placeholder {
+    color: #b5b5b5;
+}

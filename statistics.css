@@ -1,0 +1,312 @@
+/* ============================================
+   DASHBOARD SPECIFIC STYLES
+   ============================================ */
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    background-color: #ccd5ae;
+    padding: 20px 37px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 18px;
+    border-radius: 15px;
+    height: 77px;
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 11px;
+    flex-shrink: 0;
+}
+
+.company-name {
+    font-family: 'Kameron', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #000;
+    white-space: nowrap;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Dashboard Title */
+.dashboard-title {
+    margin: 20px 0;
+}
+
+.dashboard-title h1 {
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: #000;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Stat Cards Container */
+.stat-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 201px);
+    gap: 24px;
+    margin: 24px auto;
+    width: fit-content;
+    justify-content: center;
+}
+
+.stat-card {
+    background-color: #fefae0;
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 201px;
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.stat-status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.stat-number {
+    font-family: 'Staatliches', sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 48px;
+    color: #000;
+}
+
+.stat-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* Charts Container */
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.chart-card {
+    background-color: #fefae0;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.chart-title {
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    line-height: 42px;
+}
+
+.chart-content {
+    position: relative;
+    height: 300px;
+}
+
+/* Compliance Card */
+.compliance-card {
+    background-color: #fefae0;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 24px 0;
+}
+
+.compliance-content {
+    position: relative;
+    height: 300px;
+}
+
+/* Key Insights */
+.key-insights {
+    background-color: #fefae0;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 24px 0;
+}
+
+.insights-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.insight-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.insight-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.insight-value {
+    font-family: 'Staatliches', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #000;
+    line-height: 1;
+}
+
+.insight-detail {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-card:nth-child(1),
+    .chart-card:nth-child(2),
+    .chart-card:nth-child(3),
+    .chart-card:nth-child(4) {
+        grid-column: auto;
+    }
+
+    .stat-cards-container {
+        max-width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .dashboard-title h1 {
+        font-size: 28px;
+    }
+
+    .stat-cards-container {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .chart-card {
+        padding: 20px;
+    }
+
+    .chart-content,
+    .compliance-content {
+        height: 250px;
+    }
+
+    .insights-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-content {
+        padding: 10px;
+    }
+
+    .dashboard-title h1 {
+        font-size: 20px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .chart-card,
+    .compliance-card,
+    .key-insights {
+        padding: 16px;
+    }
+
+    .chart-title {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+}
+
+/* Chart Grid Lines */
+.chart-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    opacity: 0.1;
+    pointer-events: none;
+    border-left: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+.chart-grid-line {
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+}
