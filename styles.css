@@ -152,6 +152,7 @@ a:hover {
         padding: 12px 20px;
         gap: 10px;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .top-header-name {
@@ -180,6 +181,10 @@ a:hover {
         padding: 10px 15px;
         gap: 8px;
         margin: 10px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .logo-placeholder {
@@ -199,6 +204,8 @@ a:hover {
 
     .top-nav {
         gap: 6px;
+        width: 100%;
+        justify-content: center;
     }
 
     .nav-link {
