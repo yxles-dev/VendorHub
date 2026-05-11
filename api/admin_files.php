@@ -218,7 +218,6 @@ foreach ($rows as $row) {
         <nav class="top-nav">
             <a href="../index.html" class="nav-link">Home</a>
             <a href="../statistics.html" class="nav-link">Statistics</a>
-            <a href="admin_files.php" class="nav-link nav-active">Admin</a>
             <a href="admin_logout.php" class="nav-link">Logout</a>
         </nav>
     </div>
@@ -230,7 +229,9 @@ foreach ($rows as $row) {
             </div>
             <div class="hero-actions">
                 <a class="action-link action-primary" href="export_csv.php">Export CSV</a>
-                <a class="action-link action-secondary" href="../index.html">Back to site</a>
+                <form method="post" action="delete_all.php" onsubmit="return confirm('Delete ALL data from the database? This cannot be undone.');" style="display:inline-block; margin:0;">
+                    <button type="submit" class="action-link action-secondary" style="background:#f7d6d6; color:#6b1b1b; border:1px solid #f0c2c2;">Delete All</button>
+                </form>
             </div>
         </div>
 
@@ -244,7 +245,13 @@ foreach ($rows as $row) {
                             <h2><?php echo htmlspecialchars($registration['fullname']); ?></h2>
                             <div class="meta">Registration ID: <?php echo (int)$registration['registration_id']; ?></div>
                         </div>
-                        <div class="badge"><?php echo count($registration['attachments']); ?> file(s)</div>
+                        <div style="display:flex; gap:8px; align-items:center;">
+                            <div class="badge"><?php echo count($registration['attachments']); ?> file(s)</div>
+                            <form method="post" action="delete_registration_attachments.php" onsubmit="return confirm('Delete ALL files for this registration?');" style="margin:0; display:inline-block;">
+                                <input type="hidden" name="registration_id" value="<?php echo (int)$registration['registration_id']; ?>">
+                                <button type="submit" class="action-link action-secondary" style="background:#f7d6d6; color:#6b1b1b; border:1px solid #f0c2c2; padding:6px 10px;">Delete All</button>
+                            </form>
+                        </div>
                     </div>
 
                     <table>
@@ -265,8 +272,14 @@ foreach ($rows as $row) {
                                     <td data-label="MIME"><?php echo htmlspecialchars($attachment['mime']); ?></td>
                                     <td data-label="Uploaded"><?php echo htmlspecialchars($attachment['created_at']); ?></td>
                                     <td data-label="Download">
-                                        <a class="file-link" href="download_attachment.php?id=<?php echo (int)$attachment['attachment_id']; ?>">Download</a>
-                                    </td>
+                                            <a class="file-link" href="download_attachment.php?id=<?php echo (int)$attachment['attachment_id']; ?>">Download</a>
+                                        </td>
+                                        <td data-label="Action">
+                                            <form method="post" action="delete_attachment.php" onsubmit="return confirm('Delete this file?');" style="margin:0;">
+                                                <input type="hidden" name="attachment_id" value="<?php echo (int)$attachment['attachment_id']; ?>">
+                                                <button type="submit" class="action-link" style="background:#f7d6d6; color:#6b1b1b; border:1px solid #f0c2c2; padding:6px 10px;">Delete</button>
+                                            </form>
+                                        </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
