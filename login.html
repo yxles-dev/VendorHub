@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - VendorHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Login Page Specific Styles */
+        body {
+            background: linear-gradient(180deg, #f8f2e8 0%, #f4f1e4 100%);
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(255, 250, 242, 0.96);
+            border-radius: 47px;
+            padding: 60px 50px;
+            box-shadow: 0 18px 40px rgba(54, 44, 20, 0.12);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-card h1 {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: normal;
+            color: #000;
+            margin: 0 0 15px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .login-card p {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            color: var(--text-muted);
+            text-align: center;
+            margin: 0 0 40px 0;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #dfd3be;
+            border-radius: 12px;
+            background-color: #fffcf6;
+            font-size: 16px;
+            font-family: var(--font-sans);
+            color: #000;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            background-color: #fef9e6;
+        }
+
+        .form-group input::placeholder {
+            color: #b5b5b5;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px 24px;
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-button:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            border-left: 4px solid #c62828;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #dccfb7;
+        }
+
+        .back-link a {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            color: var(--accent-olive);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: var(--accent-green);
+        }
+
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 40px 30px;
+            }
+
+            .login-card h1 {
+                font-size: 36px;
+            }
+
+            .form-group input {
+                padding: 12px 14px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-header">
+        <img src="assets/logo.svg" alt="VendorHub logo" class="logo-placeholder">
+        <h2>VendorHub</h2>
+    </div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <h1>Admin Login</h1>
+            <p>Enter your credentials to access the admin panel</p>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <form id="loginForm" method="POST" action="api/admin_login.php">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Enter your username" 
+                        required 
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter your password" 
+                        required 
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <button type="submit" class="login-button">Login</button>
+            </form>
+
+            <div class="back-link">
+                <a href="index.html">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check URL params for error message
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('error')) {
+            const errorMsg = document.getElementById('errorMessage');
+            errorMsg.textContent = 'Invalid username or password. Please try again.';
+            errorMsg.classList.add('show');
+        }
+
+        // Focus on username field on load
+        document.getElementById('username').focus();
+    </script>
+</body>
+</html>

@@ -213,8 +213,14 @@ foreach ($rows as $row) {
 <body>
     <div class="top-header">
         <img src="../assets/logo.svg" alt="VendorHub logo" class="logo-placeholder">
-        <h2>VendorHub</h2>
-        <div class="badge">Admin Dashboard</div>
+        <p style="font-family: 'Georgia'; font-size: 22px; margin: 0;">VendorHub</p>
+        <div style="flex: 1;"></div>
+        <nav class="top-nav">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../statistics.html" class="nav-link">Statistics</a>
+            <a href="admin_files.php" class="nav-link nav-active">Admin</a>
+            <a href="admin_logout.php" class="nav-link">Logout</a>
+        </nav>
     </div>
     <div class="page">
         <div class="hero-strip">
@@ -224,7 +230,6 @@ foreach ($rows as $row) {
             </div>
             <div class="hero-actions">
                 <a class="action-link action-primary" href="export_csv.php">Export CSV</a>
-                <a class="action-link action-secondary" href="?logout=1">Log Out</a>
                 <a class="action-link action-secondary" href="../index.html">Back to site</a>
             </div>
         </div>
