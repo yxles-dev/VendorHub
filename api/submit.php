@@ -283,9 +283,23 @@ function handleRequirements() {
             if ($f['size'] > $maxFileSize) {
                 throw new Exception('File too large for ' . $field);
             }
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $mime = finfo_file($finfo, $f['tmp_name']);
-            finfo_close($finfo);
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mime = $finfo->file($f['tmp_name']) ?: '';
+
+            if ($mime === 'application/x-empty' || $mime === 'application/octet-stream' || $mime === '') {
+                $extension = strtolower(pathinfo($f['name'], PATHINFO_EXTENSION));
+                $extensionMap = [
+                    'jpg' => 'image/jpeg',
+                    'jpeg' => 'image/jpeg',
+                    'png' => 'image/png',
+                    'pdf' => 'application/pdf',
+                ];
+
+                if (isset($extensionMap[$extension])) {
+                    $mime = $extensionMap[$extension];
+                }
+            }
+
             if (!in_array($mime, $allowedMimes, true)) {
                 throw new Exception('Invalid file type for ' . $field . ': ' . $mime);
             }
