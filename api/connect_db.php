@@ -7,11 +7,18 @@
 
     $dsn = "mysql:host=$servername;port=$port;dbname=$dbname;charset=utf8mb4";
 
+    $sslCaOption = defined('Pdo\\Mysql::ATTR_SSL_CA')
+        ? constant('Pdo\\Mysql::ATTR_SSL_CA')
+        : (defined('PDO::MYSQL_ATTR_SSL_CA') ? PDO::MYSQL_ATTR_SSL_CA : null);
+
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_EMULATE_PREPARES => false,
-        PDO::MYSQL_ATTR_SSL_CA => dirname(__DIR__) . '/DigiCertGlobalRootG2.crt.pem',
     ];
+
+    if ($sslCaOption !== null) {
+        $options[$sslCaOption] = dirname(__DIR__) . '/DigiCertGlobalRootG2.crt.pem';
+    }
 
     try {
         $pdo = new PDO($dsn, $username, $password, $options);
