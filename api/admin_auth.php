@@ -34,6 +34,12 @@ function admin_send_auth_challenge(): void {
     exit;
 }
 
+function admin_redirect_home_with_warning(): void {
+    header('Location: ../index.html?auth=denied');
+    http_response_code(303);
+    exit;
+}
+
 function admin_try_basic_auth(): bool {
     $username = admin_basic_auth_user();
     $password = admin_basic_auth_password();
@@ -83,6 +89,10 @@ function admin_require_login(): void {
 
     if (admin_try_basic_auth()) {
         return;
+    }
+
+    if (admin_basic_auth_user() !== '' || admin_basic_auth_password() !== '') {
+        admin_redirect_home_with_warning();
     }
 
     admin_send_auth_challenge();

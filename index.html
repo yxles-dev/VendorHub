@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('auth') === 'denied') {
+            alert('Only authorized personnel are allowed.');
+            params.delete('auth');
+            const nextUrl = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
+            window.history.replaceState({}, '', nextUrl);
+        }
+    </script>
     <div class="top-header">
         <img src="assets/logo.svg" alt="VendorHub logo" class="logo-placeholder">
         <h2>VendorHub</h2>
