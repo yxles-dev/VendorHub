@@ -52,6 +52,29 @@ body {
     flex-direction: column;
 }
 
+/* Name row: keep the three name fields on one line matching form layout */
+.name-row {
+    display: flex;
+    gap: 12px;
+}
+
+.name-field input {
+    width: 100%;
+}
+
+/* Small helper to visually hide labels when used for accessibility only */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 .input-group label {
     font-family: var(--font-serif);
     font-size: 16px;

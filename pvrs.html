@@ -71,7 +71,17 @@
                     <div class="form-row">
                         <div class="input-group" style="flex: 2;">
                             <label>Fullname</label>
-                            <input type="text" name="fullname" placeholder="Ex: Juan Dela Cruz" required>
+                            <div class="name-row">
+                                <div class="input-group name-field" style="flex: 2;">
+                                    <input type="text" name="first_name" placeholder="First Name" required>
+                                </div>
+                                <div class="input-group name-field" style="flex: 1;">
+                                    <input type="text" name="middle_initial" placeholder="M." maxlength="1">
+                                </div>
+                                <div class="input-group name-field" style="flex: 2;">
+                                    <input type="text" name="last_name" placeholder="Last Name" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="input-group" style="flex: 1;">
                             <label>Sex</label>
@@ -208,7 +218,7 @@
                         </div>
                         <div class="input-group" style="flex: 1;">
                             <label>COVID Vaccine Card</label>
-                            <input type="file" name="proof_of_stall" accept="image/*" required>
+                            <input type="file" name="vaccine_card" accept="image/*" required>
                         </div>
                     </div>
 

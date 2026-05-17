@@ -6,6 +6,7 @@ const nextBtns = document.querySelectorAll(".next-btn");
 const prevBtns = document.querySelectorAll(".prev-btn");
 
 let currentStep = 0;
+let pendingRegistrationPromise = null;
 
 // Initialize registration system
 if (registrationSystem) {
@@ -181,6 +182,86 @@ function goToNextStep() {
     }
 }
 
+function buildStep1FormData() {
+    const formData = new FormData();
+    // Build fullname from split fields for backward-compatibility
+    const firstName = document.querySelector('input[name="first_name"]')?.value.trim() || '';
+    const middleInitial = document.querySelector('input[name="middle_initial"]')?.value.trim() || '';
+    const lastName = document.querySelector('input[name="last_name"]')?.value.trim() || '';
+    const fullnameCombined = [firstName, middleInitial, lastName].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+    formData.append('fullname', fullnameCombined);
+    formData.append('first_name', firstName);
+    formData.append('middle_initial', middleInitial);
+    formData.append('last_name', lastName);
+    formData.append('sex', document.querySelector('select[name="sex"]').value);
+    formData.append('date_of_birth', document.querySelector('input[name="date_of_birth"]').value);
+    formData.append('contact_number', document.querySelector('input[name="contact_number"]').value.trim());
+    formData.append('emergency_contact', document.querySelector('input[name="emergency_contact"]').value.trim());
+    formData.append('address', document.querySelector('input[name="address"]').value.trim());
+    formData.append('business_name', document.querySelector('input[name="business_name"]').value.trim());
+    formData.append('category', document.querySelector('select[name="category"]').value);
+    return formData;
+}
+
+function submitStep1Registration() {
+    if (pendingRegistrationPromise) {
+        return pendingRegistrationPromise;
+    }
+
+    const request = (async () => {
+        const response = await fetch('api/submit.php?action=register', {
+            method: 'POST',
+            body: buildStep1FormData()
+        });
+
+        const responseText = await response.text();
+        console.log('Response status:', response.status);
+        console.log('Response text:', responseText);
+
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (error) {
+            console.error('Failed to parse JSON:', error);
+            throw new Error('Server error: Check browser console and XAMPP error logs.');
+        }
+
+        if (!data.success) {
+            const parts = [];
+            if (data.error) parts.push(data.error);
+            if (data.detail) parts.push(data.detail);
+            if (data.errors && Array.isArray(data.errors)) parts.push(data.errors.join(', '));
+            throw new Error(parts.join(' | ') || 'Unknown error');
+        }
+
+        localStorage.setItem('registration_id', data.registration_id);
+        return data.registration_id;
+    })();
+
+    pendingRegistrationPromise = request;
+
+    request.finally(() => {
+        if (pendingRegistrationPromise === request) {
+            pendingRegistrationPromise = null;
+        }
+    });
+
+    return request;
+}
+
+function getRegistrationIdOrWait() {
+    const registrationId = localStorage.getItem('registration_id');
+    if (registrationId) {
+        return Promise.resolve(registrationId);
+    }
+
+    if (pendingRegistrationPromise) {
+        return pendingRegistrationPromise.then((id) => String(id));
+    }
+
+    return Promise.reject(new Error('Missing registration ID. Please go back to Step 1 and submit again.'));
+}
+
 // Next Button Function
 nextBtns.forEach((btn) => {
     btn.addEventListener("click", async () => {
@@ -188,58 +269,20 @@ nextBtns.forEach((btn) => {
 
         // Special handling for Step 1: Submit data via AJAX
         if (currentStep === 0) {
-            const formData = new FormData();
-            formData.append('fullname', document.querySelector('input[name="fullname"]').value.trim());
-            formData.append('sex', document.querySelector('select[name="sex"]').value);
-            formData.append('date_of_birth', document.querySelector('input[name="date_of_birth"]').value);
-            formData.append('contact_number', document.querySelector('input[name="contact_number"]').value.trim());
-            formData.append('emergency_contact', document.querySelector('input[name="emergency_contact"]').value.trim());
-            formData.append('address', document.querySelector('input[name="address"]').value.trim());
-            formData.append('business_name', document.querySelector('input[name="business_name"]').value.trim());
-            formData.append('category', document.querySelector('select[name="category"]').value);
+            const registrationSavePromise = submitStep1Registration();
+            goToNextStep();
+
+            registrationSavePromise.catch((error) => {
+                console.error('Registration save error:', error);
+                alert(error.message || 'Failed to save registration details.');
+            });
+        } else if (currentStep === 1) {
+            let registrationId;
 
             try {
-                const response = await fetch('api/submit.php?action=register', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const responseText = await response.text();
-                console.log('Response status:', response.status);
-                console.log('Response text:', responseText);
-                
-                // Try to parse as JSON
-                let data;
-                try {
-                    data = JSON.parse(responseText);
-                } catch (e) {
-                    console.error('Failed to parse JSON:', e);
-                    alert('Server error: Check browser console and XAMPP error logs.');
-                    return;
-                }
-
-                if (data.success) {
-                    // Store registration ID in localStorage for future steps
-                    localStorage.setItem('registration_id', data.registration_id);
-
-                    // Proceed to next step
-                    goToNextStep();
-                } else {
-                    const parts = [];
-                    if (data.error) parts.push(data.error);
-                    if (data.detail) parts.push(data.detail);
-                    if (data.errors && Array.isArray(data.errors)) parts.push(data.errors.join(', '));
-                    alert('Error: ' + (parts.join(' | ') || 'Unknown error'));
-                }
+                registrationId = await getRegistrationIdOrWait();
             } catch (error) {
-                alert('Network error: ' + error.message);
-                console.error('Fetch error:', error);
-            }
-        } else if (currentStep === 1) {
-            const registrationId = localStorage.getItem('registration_id');
-
-            if (!registrationId) {
-                alert('Missing registration ID. Please go back to Step 1 and submit again.');
+                alert(error.message);
                 return;
             }
 
@@ -298,10 +341,12 @@ nextBtns.forEach((btn) => {
             }
         } else if (currentStep === 2) {
             // Step 3: submit files via FormData to server
-            const registrationId = localStorage.getItem('registration_id');
+            let registrationId;
 
-            if (!registrationId) {
-                alert('Missing registration ID. Please go back to Step 1 and submit again.');
+            try {
+                registrationId = await getRegistrationIdOrWait();
+            } catch (error) {
+                alert(error.message);
                 return;
             }
 
@@ -311,8 +356,18 @@ nextBtns.forEach((btn) => {
                 'government_id',
                 'health_certificate',
                 'sanitary_permit',
-                'proof_of_stall'
+                'vaccine_card'
             ];
+
+            // Friendly labels for file fields shown to users
+            const fileFieldLabels = {
+                'barangay_clearance': 'Barangay Clearance',
+                'dti_registration': 'DTI Business Registration',
+                'government_id': 'Valid Government ID',
+                'health_certificate': 'Health Certificate',
+                'sanitary_permit': 'Sanitary Permit',
+                'vaccine_card': 'COVID Vaccine Card'
+            };
 
             const fd = new FormData();
             fd.append('registration_id', registrationId);
@@ -320,7 +375,8 @@ nextBtns.forEach((btn) => {
             for (const name of fileFields) {
                 const input = document.querySelector(`input[name="${name}"]`);
                 if (!input || !input.files || !input.files[0]) {
-                    alert('Please attach file for: ' + name.replace(/_/g, ' '));
+                    const label = fileFieldLabels[name] || name.replace(/_/g, ' ');
+                    alert('Please attach file for: ' + label);
                     return;
                 }
                 fd.append(name, input.files[0]);

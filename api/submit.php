@@ -261,7 +261,7 @@ function handleRequirements() {
         'government_id',
         'health_certificate',
         'sanitary_permit',
-        'proof_of_stall'
+        'vaccine_card'
     ];
 
     $maxFileSize = 10 * 1024 * 1024; // 10 MB per file
